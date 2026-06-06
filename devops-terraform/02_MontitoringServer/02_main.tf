@@ -1,6 +1,6 @@
 resource "aws_instance" "web" {
-  ami                    = "ami-0b6c6ebed2801a5cb"
-  instance_type          = "t3.xlarge"
+  ami                    = "ami-091138d0f0d41ff90"
+  instance_type          = "t3.large"
   key_name               = "My-Ubuntu-Key"
   vpc_security_group_ids = [aws_security_group.My-Monitoring-Server-SG.id]
   user_data              = templatefile("./03_install.sh", {}) 
@@ -10,7 +10,7 @@ resource "aws_instance" "web" {
   }
 
   root_block_device {
-    volume_size = 20
+    volume_size = 15
   }
 
 }
@@ -47,20 +47,3 @@ resource "aws_security_group" "My-Monitoring-Server-SG" {
 
 }
 
-
-resource "aws_budgets_budget" "budget-ec2" {
-  name              = "my-monthly-budget"
-  budget_type       = "COST"
-  limit_amount      = "50"
-  limit_unit        = "USD"
-  time_period_start = "2026-03-01_00:00"
-  time_unit         = "MONTHLY"
-
-  notification {
-    comparison_operator        = "GREATER_THAN"
-    threshold                  = 60
-    threshold_type             = "PERCENTAGE"
-    notification_type          = "FORECASTED"
-    subscriber_email_addresses = ["mimar.aslan@gmail.com"]
-  }
-}

@@ -4,16 +4,16 @@ sudo apt upgrade  -y
 
 
 #java
-sudo apt install openjdk-21-jdk -y
+sudo apt install openjdk-21-jdk  -y
 /usr/bin/java –version
 
 
 #jenkins
 sudo wget -O /etc/apt/keyrings/jenkins-keyring.asc \
-https://pkg.jenkins.io/debian/jenkins.io-2026.key
+  https://pkg.jenkins.io/debian/jenkins.io-2026.key
 echo "deb [signed-by=/etc/apt/keyrings/jenkins-keyring.asc]" \
-https://pkg.jenkins.io/debian binary/ | sudo tee \
-/etc/apt/sources.list.d/jenkins.list > /dev/null
+  https://pkg.jenkins.io/debian binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
 sudo apt update
 sudo apt install jenkins   -y
 sudo systemctl enable jenkins
@@ -32,9 +32,9 @@ sudo chmod 777 /var/run/docker.sock
 
 
 #sonarqube
-docker run -d --name sonar -p 9000:9000   --restart unless-stopped  sonarqube:latest
+docker run -d    --name sonar    -p 9000:9000        --restart unless-stopped      sonarqube:latest
 
-# Bilgisayar acildigida Docker'in uzerinde calisan sonarqube containerlarıni otomatik çalıştırma yapilacak.
+# Bilgisayar acildigida Docker'in uzerinde calisan sonarqube containerlarıni otomatik çalıştırma yapmazsak bizzat calistirmak zorunda kaliriz..
 # docker ps -a
 # docker start SONAR_CONTAINER_ID
 
@@ -46,18 +46,18 @@ docker run -d --name sonar -p 9000:9000   --restart unless-stopped  sonarqube:la
 
 
 #trivy
-sudo apt-get install wget apt-transport-https gnupg lsb-release -y
+sudo apt-get install wget apt-transport-https gnupg lsb-release  -y
 wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
 echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
 sudo apt-get update
-sudo apt-get install trivy -y
+sudo apt-get install trivy  -y
 
 
 #curl
 sudo apt install curl
 
 
-#awscliv2
+#aws cli v2
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 sudo apt install unzip
 unzip awscliv2.zip
@@ -65,7 +65,7 @@ sudo ./aws/install
 
 
 #kubectl
-curl -LO https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
 
@@ -101,7 +101,6 @@ sudo apt upgrade -y
 #kubectl get pods -n prometheus
 
 ### ArgoCD kurulumu
-#
 
 # makineyi yeniden baslatma en sonda olacak.
  sudo reboot
