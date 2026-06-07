@@ -32,10 +32,10 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 script {
-                    if (isUnix()) {
+                    if (isUnix()) {  // Linux veya MacOS bir ortamda çalışıyorsanız, sh komutunu kullanarak npm install yapabilirsiniz
                         sh "npm install"
                     } else {
-                        bat "npm install"
+                        bat "npm install" // Windows ortamında çalışıyorsanız, bat komutunu kullanarak npm install yapabilirsiniz
                     }
                 }
             }
@@ -65,9 +65,6 @@ pipeline {
                 }
             }
         }
-
-
-
 
 
 
@@ -191,7 +188,7 @@ pipeline {
         stage('Kubernetes (K8s)') {
             steps {
                  script {
-                      kubernetesDeploy (configs: 'deployment-service.yaml',  kubeconfigId: 'kubernetes')
+                      kubernetesDeploy (configs: 'deployment-service.yml',  kubeconfigId: 'kubernetes')
                      echo "K8s içinde image'ı çalıştır."
                  }
 
@@ -200,6 +197,9 @@ pipeline {
  */
 
 
+
+
+/*
         stage('Deploy to Kubernetes'){
             steps{
                 script{
@@ -213,7 +213,7 @@ pipeline {
                 }
             }
         }
-
+*/
 
 
 
