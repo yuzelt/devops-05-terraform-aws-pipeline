@@ -77,6 +77,9 @@ docker --version
 jenkins --version
 trivy --version
 sonar-scanner --version
+aws --version
+kubectl version 
+
 ```
 
 ### Docker'da tüm containerları listeledik.
